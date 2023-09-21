@@ -72,11 +72,11 @@ The library will automatically log experiment details and results. You can custo
 
 ## Documentation
 
-For detailed documentation and examples, please refer to the [Research Harness Library Documentation](https://github.com/callowaysutton/ResearchHarness).
+For detailed documentation and examples, please refer to the [Research Harness Library Documentation](https://github.com/callowaysutton/ResearchHarness/wiki).
 
 ## Contributing
 
-We welcome contributions to the Research Harness Library! If you find a bug or have an idea for an improvement, please open an issue or submit a pull request on our [GitHub repository](https://github.com/yourusername/research-harness-library).
+We welcome contributions to the Research Harness Library! If you find a bug or have an idea for an improvement, please open an issue or submit a pull request on our [GitHub repository](https://github.com/callowaysutton/research-harness).
 
 ## Contact
 
