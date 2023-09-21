@@ -43,10 +43,13 @@ def run_shell_command(config: Dict[str, Any] = None):
     
 if __name__ == "__main__":
     from research_harness import ExperimentHarness
-    experiment_parameters = {'command': ["ls"]}  # Customize as needed
+    from research_harness import ExperimentConfig
+
+    experiment_parameters = {'command': ["htop"]}  # Customize as needed
     # Example usage
     harness = ExperimentHarness(experiment_dir='my_experiments')
-    harness.run_experiment(run_shell_command, parameters = experiment_parameters)
+    experiment_config = ExperimentConfig(max_duration_seconds=1, experiment_name='my_experiment')
+    harness.run_experiment(run_shell_command, parameters = experiment_parameters, config = experiment_config)
 else:
     from .research_harness import ExperimentHarness
     __all__ = [ExperimentHarness]
