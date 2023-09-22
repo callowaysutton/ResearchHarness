@@ -4,12 +4,13 @@ import csv
 import time
 import unittest
 from typing import Dict, Any
-from research_harness import ExperimentHarness
+from research_harness import ExperimentHarness, ExperimentConfig
 
 class TestExperimentHarness(unittest.TestCase):
     def setUp(self):
         self.experiment_dir = 'test_experiments'
-        self.harness = ExperimentHarness(experiment_dir=self.experiment_dir)
+        self.config = ExperimentConfig(experiment_repetitions=1, max_duration_seconds=1, experiment_name='test')
+        self.harness = ExperimentHarness(experiment_dir=self.experiment_dir, config=self.config)
 
     def tearDown(self):
         # Clean up test experiment directories
@@ -39,7 +40,7 @@ class TestExperimentHarness(unittest.TestCase):
 
         self.assertEqual(len(experiment_folders), 2)
         experiment_folders.sort()
-        experiment_folder = experiment_folders[0]
+        experiment_folder = experiment_folders[1]
 
         parameters_path = os.path.join(self.experiment_dir, experiment_folder, 'parameters.json')
         self.assertTrue(os.path.exists(parameters_path))
@@ -59,7 +60,8 @@ class TestExperimentHarness(unittest.TestCase):
 
             # Verify that experiment information is correctly logged
             self.assertEqual(experiment_info['experiment_name'], experiment_folder)
-            self.assertTrue(experiment_info['timestamp'])
+            self.assertTrue(experiment_info['start_time'])
+            self.assertTrue(experiment_info['end_time'])
             self.assertEqual(experiment_info['parameters_path'], parameters_path)
             self.assertEqual(experiment_info['output_path'], output_path)
 
@@ -68,6 +70,7 @@ class TestExperimentHarness(unittest.TestCase):
             parameters = json.load(param_file)
             self.assertEqual(parameters, experiment_parameters)
 
+        print(output_path)
         with open(output_path, 'r') as output_file:
             output_data = json.load(output_file)
             self.assertEqual(output_data, {'result': 'sample_data'})

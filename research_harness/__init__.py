@@ -45,11 +45,12 @@ if __name__ == "__main__":
     from research_harness import ExperimentHarness
     from research_harness import ExperimentConfig
 
-    experiment_parameters = {'command': ["htop"]}  # Customize as needed
+    experiment_parameters = {'command': ["tree"]}  # Customize as needed
     # Example usage
-    harness = ExperimentHarness(experiment_dir='my_experiments')
-    experiment_config = ExperimentConfig(max_duration_seconds=1, experiment_name='my_experiment')
-    harness.run_experiment(run_shell_command, parameters = experiment_parameters, config = experiment_config)
+    experiment_config = ExperimentConfig(experiment_repetitions = 100, max_duration_seconds=10, experiment_name='test')
+    harness = ExperimentHarness(experiment_dir='my_experiments', config = experiment_config)
+    harness.run_experiment(run_shell_command, parameters = experiment_parameters)
 else:
     from .research_harness import ExperimentHarness
-    __all__ = [ExperimentHarness]
+    from .research_harness import ExperimentConfig
+    __all__ = [ExperimentHarness, ExperimentConfig]
