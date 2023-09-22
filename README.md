@@ -37,7 +37,7 @@ To get started, follow these steps:
 2. **Install the Research Harness Library**:
 
    ```bash
-   pip install research-harness
+   pip install git+https://github.com/callowaysutton/ResearchHarness.git@main
    ```
 
 3. **Create an Experiment Script**:
